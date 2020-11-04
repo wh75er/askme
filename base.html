@@ -16,7 +16,7 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
-    <link href="css/sticky-footer-navbar.css" rel="stylesheet" />
+    <link href="css/custom.css" rel="stylesheet" />
   </head>
   <body class="d-flex flex-column h-100">
     <header>
@@ -71,22 +71,24 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="flex-shrink-0">
+    <main class="flesx-shrink-0" role="main">
       <div class="container">
-        <h1 class="mt-5">Sticky footer with fixed navbar</h1>
-        <p class="lead">
-          Pin a footer to the bottom of the viewport in desktop browsers with
-          this custom HTML and CSS. A fixed navbar has been added with
-          <code>padding-top: 60px;</code> on the
-          <code>main &gt; .container</code>.
-        </p>
-        <p>
-          Back to
-          <a href="/docs/4.5/examples/sticky-footer/"
-            >the default sticky footer</a
-          >
-          minus the navbar.
-        </p>
+        <div class="row">
+          <div class="col-9">
+            <div class="row question-box">
+              <div class="col-3">
+                <img class="question-img" src="img/qimg.jpg"></img>
+              </div>
+              <div class="col-9">
+                <div class="question-title">Question Title</div>
+                <div class="question-text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3">
+            2 of 2
+          </div>
+        </div>
       </div>
     </main>
 
@@ -95,14 +97,8 @@
         <span class="text-muted">Place sticky footer content here.</span>
       </div>
     </footer>
-    <script
-      src="js/jquery.slim.min.js"
-    ></script>
-    <script
-      src="js/popper.min.js"
-    ></script>
-    <script
-      src="js/bootstrap.min.js"
-    ></script>
+    <script src="js/jquery.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>

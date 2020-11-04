@@ -1,0 +1,20 @@
+{
+  "name": "askme",
+  "version": "1.0.0",
+  "description": "Simple ask web application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github_wh75er.com:wh75er/park-web-sem1.git"
+  },
+  "author": "Andrej",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
+  }
+}

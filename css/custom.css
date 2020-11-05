@@ -29,6 +29,8 @@ code {
 
 .question-img {
   max-width: 150px;
+  border: 1px solid lightgrey;
+  border-radius: 360px;
 }
 
 .question-title {
@@ -36,10 +38,22 @@ code {
   font-weight: bold;
 }
 
-.nav-ask-button {
-  margin-right: 20px;
+.question-text {
+  max-height: 210px; 
 }
 
-.nav-user .user-avatar img {
+.question-footer {
+}
+
+.nav-ask-button {
+  margin-right: 35px;
+}
+
+.likes-counter {
+  max-width: 70px;
+}
+
+.media .user-avatar {
+  border: 1.5px solid green;
   max-height: 38px;
 }

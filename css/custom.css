@@ -45,6 +45,37 @@ code {
 .question-footer {
 }
 
+.tag-box {
+  margin-top: 30px;
+  margin-left: 100px;
+}
+
+.tag-title {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.tag-text-box {
+  margin-top: 30px;
+}
+
+.tag-text {
+  margin-left: 6px;
+  margin-top: 6px;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.members-title {
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.members-group {
+  margin-top: 30px;
+}
+
 .nav-ask-button {
   margin-right: 35px;
 }
@@ -56,4 +87,10 @@ code {
 .media .user-avatar {
   border: 1.5px solid green;
   max-height: 38px;
+}
+
+.paginator-box {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-left: 10px;
 }

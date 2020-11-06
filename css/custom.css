@@ -27,7 +27,29 @@ code {
   padding: 20px;
 }
 
+.question-box-main {
+  margin-top: 30px;
+  margin-bottom: 30px;
+//  border: 1px solid gray;
+//  border-radius: 20px;
+  padding: 20px;
+}
+
+.answer-box {
+  margin-top: 30px;
+  margin-bottom: 30px;
+//  border: 1px solid gray;
+//  border-radius: 20px;
+  padding: 20px;
+}
+
 .question-img {
+  max-width: 150px;
+  border: 1px solid lightgrey;
+  border-radius: 360px;
+}
+
+.answer-img {
   max-width: 150px;
   border: 1px solid lightgrey;
   border-radius: 360px;
@@ -40,6 +62,14 @@ code {
 
 .question-text {
   max-height: 210px; 
+}
+
+.answer-text {
+  max-height: 400px;
+}
+
+.question-text-main {
+  max-height: 400px; 
 }
 
 .question-footer {

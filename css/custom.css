@@ -124,3 +124,12 @@ code {
   margin-bottom: 25px;
   margin-left: 10px;
 }
+
+.ask-box {
+  margin-top: 30px;
+}
+
+.ask-label-title {
+  font-size: 30px;
+  font-weight: bold;
+}

@@ -74,19 +74,37 @@
         <div class="row">
           <div class="col-8">
             <form class="ask-box">
-              <label class="row-form-label login-label-title">Log In</label>
+              <label class="row-form-label signup-label-title">Sign Up</label>
               <div class="form-group row ml-2 mt-3">
-                <label for="inputLogin" class="col-sm-2 col-form-label font-weight-bold">Login</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control is-invalid" id="inputLogin" maxlength="20" aria-describedby="inputLoginFeedback" placeholder="Enter your login here" required>
-                  <div id="inputLoginFeedback" class="invalid-feedback">
-                    Login shouldn't be empty!
+                <label for="inputLoginTitle" class="col-sm-4 col-form-label font-weight-bold">Login</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control is-invalid" id="inputLoginTitle" maxlength="20" aria-describedby="inputLoginTitleFeedback" value="ping_guy" required>
+                  <div id="inputQuestionLoginFeedback" class="invalid-feedback">
+                    Sorry, this login is already taken!
                   </div>
                 </div>
               </div>
               <div class="form-group row ml-2 mt-3">
-                <label for="inputPassword" class="col-sm-2 col-form-label font-weight-bold">Password</label>
-                <div class="col-sm-10">
+                <label for="inputEmailText" class="col-sm-4 col-form-label font-weight-bold">Email</label>
+                <div class="col-sm-5">
+                  <input type="email" class="form-control is-invalid" id="inputEmailText" aria-describedby="inputEmailTextFeedback" value="pingguy@doggy.de" required>
+                  <div id="inputEmailTextFeedback" class="invalid-feedback">
+                    Sorry, this email is already taken!
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row ml-2 mt-3">
+                <label for="inputNickname" class="col-sm-4 col-form-label font-weight-bold">Nickname</label>
+                <div class="col-sm-5">
+                  <input type="text" class="form-control is-invalid" id="inputNickname" maxlength=20 aria-describedby="inputNicknameFeedback" value="PingGuy" required>
+                  <div id="inputNicknameFeedback" class="invalid-feedback">
+                    Sorry, this nickname is already taken!
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row ml-2 mt-3">
+                <label for="inputPassword" class="col-sm-4 col-form-label font-weight-bold">Password</label>
+                <div class="col-sm-5">
                   <input type="password" class="form-control is-invalid" id="inputPassword" maxlength="32" aria-describedby="inputPassword" placeholder="Enter your password here" required>
                   <div id="inputPasswordFeedback" class="invalid-feedback">
                     Sorry, wrong password!
@@ -94,19 +112,33 @@
                 </div>
               </div>
               <div class="form-group row ml-2 mt-3">
-                <div class="col-sm-2">
+                <label for="inputPassword2" class="col-sm-4 col-form-label font-weight-bold">Repeat Password</label>
+                <div class="col-sm-5">
+                  <input type="password" class="form-control is-invalid" id="inputPassword2" maxlength="32" aria-describedby="inputPassword22" placeholder="Repeat your password here" required>
+                  <div id="inputPassword2Feedback" class="invalid-feedback">
+                    Passwords don't match!
+                  </div>
                 </div>
-                <div class="col-sm-10">
-                  <button type="submit" class="btn btn-dark">Log In!</button>
+              </div>
+              <div class="form-group row ml-2 mt-3">
+                <label for="uploadAvatar" class="col-sm-4 col-form-label font-weight-bold">Upload avatar</label>
+                <div class="col-sm-5">
+                  <div class="form-group">
+                    <input type="file" class="form-control-file is-invalid" id="uploadAvatarSettings" accept="image/*">
+                    <div id="inputNicknameFeedback" class="invalid-feedback">
+                      File is not an image!
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row ml-2 mt-3">
+                <div class="col-sm-4">
+                </div>
+                <div class="col-sm-5">
+                  <button type="submit" class="btn btn-dark">Sing Up</button>
                 </div>
               </div>
             </form>
-            <div class="row ml-2 mt-4">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-10">
-                <a href="#">Create new account</a>
-              </div>
-            </div>
           </div>
           <div class="col-4">
             <div class="tag-box">

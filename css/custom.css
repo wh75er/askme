@@ -119,6 +119,11 @@ code {
   max-height: 38px;
 }
 
+.user-avatar-settings {
+  border: 1.5px solid green;
+  max-height: 200px;
+}
+
 .paginator-box {
   margin-top: 25px;
   margin-bottom: 25px;
@@ -130,6 +135,11 @@ code {
 }
 
 .ask-label-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.settings-label-title {
   font-size: 30px;
   font-weight: bold;
 }

@@ -1,3 +1,8 @@
+{% extends "inc/base.html" %}
+
+{% load static %}
+
+{% block content %}
 <form class="ask-box">
   <label class="row-form-label settings-label-title">Settings: PingGuy</label>
   <div class="form-group row ml-2 mt-3">
@@ -32,7 +37,7 @@
     <div class="col-sm-5">
       <div class="d-flex flex-column">
         <div class="d-flex">
-          <img class="user-avatar-settings" src="img/qimg.jpg">
+          <img class="user-avatar-settings" src="{% static "img/qimg.jpg" %}">
         </div>
       </div>
       <div class="d-flex flex-column mt-3">
@@ -54,3 +59,4 @@
     </div>
   </div>
 </form>
+{% endblock %}

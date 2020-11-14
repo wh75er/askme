@@ -15,7 +15,7 @@
   </div>
   <div class="media-body">
     {% if entity.answers %}
-    <h5><a href="#" class="mt-0 question-title">{{ entity.title }}</a></h5>
+    <h5><a href="{% url 'question' entity.id %}" class="mt-0 question-title">{{ entity.title }}</a></h5>
     {% else %}
     <h5>{{ entity.title }}</h5>
     {% endif %}
@@ -33,7 +33,7 @@
 {% if entity.answers or entity.tags %}
   <div class="container d-flex justify-content-end question-footer">
   {% if entity.answers %}
-    <a href="#" class="mr-3">answers({{ entity.answers }})</a>
+    <a href="{% url 'question' entity.id %}" class="mr-3">answers({{ entity.answers }})</a>
   {% endif %}
 
   {% if entity.tags %}
@@ -41,7 +41,7 @@
   {% endif %}
 
   {% for tag in entity.tags %}
-    <a href="#">{{ tag }}</a>
+    <a href="{% url 'tag' tag %}">{{ tag }}</a>
     {% if not forloop.last %}
       <span>,&nbsp;</span>
     {% endif %}

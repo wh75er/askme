@@ -66,6 +66,7 @@ def tagQuestions(request, tag):
             'id': i,
             'text': 'TaggedText' + str(i),
             'rating': 50 + i,
+            'answers': i,
             'tags': ['a', 'b', tag],
         })
     return render(request, 'tag.html', {
@@ -76,7 +77,6 @@ def tagQuestions(request, tag):
 
 
 def question(request, id):
-    print("id is :", id)
     question_ = {
             'title': 'Question ' + str(id),
             'id': id,
@@ -95,6 +95,7 @@ def question(request, id):
     return render(request, 'question.html', {
         'entity': question_,
         'answers': answers_,
+        'rightPanel': rightPanel,
     })
 
 

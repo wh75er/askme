@@ -1,0 +1,7 @@
+{% for entity in questions %}
+  <div class="row question-box shadow-lg">
+    {% include "inc/question_box.html" %}
+  </div>
+{% endfor %}
+
+{% include "inc/paginator.html" %}

@@ -45,26 +45,34 @@ def hotQuestions(request):
     hotQuestions_ = []
     for i in range(1, 10):
         hotQuestions_.append({
-            'title': 'title ' + str(i),
+            'title': 'HotTitle ' + str(i),
             'id': i,
-            'text': 'text' + str(i),
-            'rating': 200,
-            'tags': ['a', 'b'],
+            'text': 'HotText' + str(i),
+            'rating': 999,
+            'answers': i,
+            'tags': ['hot topic', 'hot', 'melting'],
         })
-    return HttpResponse("hot questions page")
+    return render(request, 'hot.html', {
+        'questions': hotQuestions_,
+        'rightPanel': rightPanel,
+    })
 
 
 def tagQuestions(request, tag):
     taggedQuestions_ = []
     for i in range(1, 5):
         taggedQuestions_.append({
-            'title': 'title ' + str(i),
+            'title': 'TaggedQuestion' + str(i),
             'id': i,
-            'text': 'text' + str(i),
-            'rating': 200,
+            'text': 'TaggedText' + str(i),
+            'rating': 50 + i,
             'tags': ['a', 'b', tag],
         })
-    return HttpResponse("tagged questions page: %s" % tag)
+    return render(request, 'tag.html', {
+        'tag': tag,
+        'questions': taggedQuestions_,
+        'rightPanel': rightPanel,
+    })
 
 
 def question(request, id):
@@ -91,12 +99,24 @@ def question(request, id):
 
 
 def login(request):
-    return HttpResponse("login page")
+    return render(request, 'login.html', {
+        'rightPanel': rightPanel,
+    })
 
 
 def signup(request):
-    return HttpResponse("sign-up page")
+    return render(request, 'signup.html', {
+        'rightPanel': rightPanel,
+    })
 
 
 def ask(request):
-    return HttpResponse("question creation page")
+    return render(request, 'ask.html', {
+        'rightPanel': rightPanel,
+    })
+
+
+def settings(request):
+    return render(request, 'settings.html', {
+        'rightPanel': rightPanel,
+    })

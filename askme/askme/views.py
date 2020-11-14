@@ -1,4 +1,5 @@
-from django.http import HttpResponse
+import math
+from django.http import HttpRequest
 from django.shortcuts import render
 
 rightPanel = {
@@ -23,6 +24,23 @@ rightPanel = {
 }
 
 
+def paginate(objectsList, request, perPage=10):
+    size = len(objectsList)
+    pages = math.ceil(size/perPage)
+
+    page = request.GET.get('page', '')
+
+    if page == '':
+        page = 1
+
+    page = int(page)
+
+    startIdx = (page - 1) * perPage
+    pageSlice = objectsList[startIdx:startIdx + perPage]
+
+    return page, pages, pageSlice
+
+
 def index(request):
     questions_ = []
     for i in range(1, 30):
@@ -35,7 +53,12 @@ def index(request):
             'tags': ['simple', 'small'],
         })
     questions_[0]['rating'] = 200
+
+    page, pages, questions_ = paginate(questions_, request, 20)
+
     return render(request, 'index.html', {
+        'page': page,
+        'pages': pages,
         'questions': questions_,
         'rightPanel': rightPanel,
     })
@@ -52,7 +75,12 @@ def hotQuestions(request):
             'answers': i,
             'tags': ['hot topic', 'hot', 'melting'],
         })
+
+    page, pages, hotQuestions_ = paginate(hotQuestions_, request, 20)
+
     return render(request, 'hot.html', {
+        'page': page,
+        'pages': pages,
         'questions': hotQuestions_,
         'rightPanel': rightPanel,
     })
@@ -69,7 +97,12 @@ def tagQuestions(request, tag):
             'answers': i,
             'tags': ['a', 'b', tag],
         })
+
+    page, pages, taggedQuestions_ = paginate(taggedQuestions_, request, 20)
+
     return render(request, 'tag.html', {
+        'page': page,
+        'pages': pages,
         'tag': tag,
         'questions': taggedQuestions_,
         'rightPanel': rightPanel,
@@ -85,14 +118,19 @@ def question(request, id):
             'tags': ['stupid question', 'question'],
             }
     answers_ = []
-    for i in range(1, 30):
+    for i in range(1, 125):
         answers_.append({
             'id': i,
             'text': 'AnswerText' + str(i),
             'rating': i+1,
             'correct': False,
         })
+
+    page, pages, answers_ = paginate(answers_, request, 30)
+
     return render(request, 'question.html', {
+        'page': page,
+        'pages': pages,
         'entity': question_,
         'answers': answers_,
         'rightPanel': rightPanel,

@@ -1,14 +1,22 @@
+{% if pages > 1 %}
 <div class="row paginator-box">
   <nav aria-label="...">
     <ul class="pagination">
+      {% with ''|center:pages as range %}
+      {% for _ in range %}
+        {% if forloop.counter == page %}
       <li class="page-item active" aria-current="page">
         <span class="page-link">
-          1
+          {{ forloop.counter }}
           <span class="sr-only">(current)</span>
         </span>
       </li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% endwith %}
     </ul>
   </nav>
 </div>
+{% endif %}

@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en" class="h-100">
   <head>
@@ -14,9 +16,9 @@
     <meta name="generator" content="Jekyll v4.1.1" />
     <title>Sticky Footer Navbar Template · Bootstrap</title>
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet" />
     <!-- Custom styles for this template -->
-    <link href="css/custom.css" rel="stylesheet" />
+    <link href="{% static "css/custom.css" %}" rel="stylesheet" />
   </head>
   <body class="d-flex flex-column h-100">
     <header>
@@ -73,7 +75,7 @@
       <div class="container">
         <div class="row">
           <div class="col-8">
-            
+            {% block content %}{% endblock %}
           </div>
           <div class="col-4">
             <div class="tag-box">
@@ -106,8 +108,8 @@
         <span class="text-muted">Don't Ask © 2020</span>
       </div>
     </footer>
-    <script src="js/jquery.slim.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{% static "js/jquery.slim.min.js" %}"></script>
+    <script src="{% static "js/popper.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
   </body>
 </html>

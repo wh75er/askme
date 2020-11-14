@@ -1,0 +1,39 @@
+{% extends "inc/base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="row questions-title">
+  <div class="col-4 mt-3">
+    <h2>New Questions<h2>
+  </div>
+  <div class="col-6 mt-4">
+    <a href="#">
+      Hot Questions
+    </a>
+  </div>
+</div>
+
+{% for entity in questions %}
+  <div class="row question-box shadow-lg">
+    {% include "inc/question_box.html" %}
+  </div>
+{% endfor %}
+
+<div class="row paginator-box">
+  <nav aria-label="...">
+    <ul class="pagination">
+      <li class="page-item active" aria-current="page">
+        <span class="page-link">
+          1
+          <span class="sr-only">(current)</span>
+        </span>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+    </ul>
+  </nav>
+</div>
+
+{% endblock %}

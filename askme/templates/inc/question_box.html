@@ -1,0 +1,38 @@
+{% load static %}
+
+<div class="media">
+  <div class="mr-3 ml-3">
+    <div class="row">
+      <img src="{% static "img/qimg.jpg" %}" class="mr-3 question-img" alt="...">
+    </div>
+    <div class="row mt-3 ml-4">
+      <div class="list-group like-button">
+        <a href="#"class="list-group-item list-group-item-action text-center">▲</a>
+        <div class="list-group-item text-center text-truncate likes-counter">{{ entity.rating }}</div>
+        <a href="#" class="list-group-item list-group-item-action text-center">▼</a>
+      </div>
+    </div>
+  </div>
+  <div class="media-body">
+    <h5><a href="#" class="mt-0 question-title">{{ entity.title }}</a></h5>
+    <div class="question-text overflow-hidden">{{ entity.text }}</div>
+  </div>
+</div>
+{% if entity.answers or entity.tags %}
+<div class="container d-flex justify-content-end question-footer">
+  {% if entity.answers %}
+    <a href="#" class="mr-3">answers({{ entity.answers }})</a>
+  {% endif %}
+
+  {% if entity.tags %}
+    <span class="mr-2">Tags: </span>
+  {% endif %}
+
+  {% for tag in entity.tags %}
+    <a href="#">{{ tag }}</a>
+    {% if not forloop.last %}
+      <span>,&nbsp;</span>
+    {% endif %}
+  {% endfor %}
+</div>
+{% endif %}

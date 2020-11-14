@@ -1,6 +1,27 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+rightPanel = {
+    'popularTags': [
+            'tag1',
+            'tag2',
+            'tag3',
+            'tag4',
+            'tag5'
+        ],
+    'bestMembers': [
+        {
+            'name': 'member1'
+        },
+        {
+            'name': 'member2'
+        },
+        {
+            'name': 'member3'
+        },
+    ]
+}
+
 
 def index(request):
     questions_ = []
@@ -16,6 +37,7 @@ def index(request):
     questions_[0]['rating'] = 200
     return render(request, 'index.html', {
         'questions': questions_,
+        'rightPanel': rightPanel,
     })
 
 
@@ -48,23 +70,24 @@ def tagQuestions(request, tag):
 def question(request, id):
     print("id is :", id)
     question_ = {
-            'title': 'Hello world',
+            'title': 'Question ' + str(id),
             'id': id,
-            'text': 'yo, whats up',
+            'text': 'yo, whats up. I have a stupid question',
             'rating': 200,
-            'tags': ['a', 'b'],
+            'tags': ['stupid question', 'question'],
             }
-    print("dict is: ", question_)
     answers_ = []
     for i in range(1, 30):
         answers_.append({
-            'title': 'title ' + str(i),
             'id': i,
-            'text': 'text' + str(i),
-            'rating': 222,
+            'text': 'AnswerText' + str(i),
+            'rating': i+1,
             'correct': False,
         })
-    return HttpResponse("question page: %s" % question_['id'])
+    return render(request, 'question.html', {
+        'entity': question_,
+        'answers': answers_,
+    })
 
 
 def login(request):

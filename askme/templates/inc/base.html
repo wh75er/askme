@@ -83,19 +83,17 @@
                 Popular tags
               </div>
               <div class="row tag-text-box">
-                <span class="tag-text">Tag1</span>
-                <span class="tag-text">Tag2</span>
-                <span class="tag-text">Tag3</span>
-                <span class="tag-text">Tag4</span>
-                <span class="tag-text">Tag5</span>
+                {% for tag in rightPanel.popularTags %}
+                  <span class="tag-text">{{ tag }}</span>
+                {% endfor %}
               </div>
               <div class="row members-title">
                 Best members
               </div>
               <div class="list-group list-group-flush members-group">
-                <a href="#" class="list-group-item list-group-item-action text-center overflow-hidden">Member1</a>
-                <a href="#" class="list-group-item list-group-item-action text-center overflow-hidden">Member2</a>
-                <a href="#" class="list-group-item list-group-item-action text-center overflow-hidden">Member3</a>
+                {% for member in rightPanel.bestMembers %}
+                  <a href="#" class="list-group-item list-group-item-action text-center overflow-hidden">{{ member.name }}</a>
+                {% endfor %}
               </div>
             </div>
           </div>

@@ -14,12 +14,24 @@
     </div>
   </div>
   <div class="media-body">
+    {% if entity.answers %}
     <h5><a href="#" class="mt-0 question-title">{{ entity.title }}</a></h5>
+    {% else %}
+    <h5>{{ entity.title }}</h5>
+    {% endif %}
     <div class="question-text overflow-hidden">{{ entity.text }}</div>
+    {% if not entity.title %}
+      <div class="d-flex justify-content-start mt-4">
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="CorrectCheck{{ entity.id }}">
+          <label class="form-check-label" for="CorrectCheck{{ entity.id }}">Correct!</label>
+        </div>
+      </div>
+    {% endif %}
   </div>
 </div>
 {% if entity.answers or entity.tags %}
-<div class="container d-flex justify-content-end question-footer">
+  <div class="container d-flex justify-content-end question-footer">
   {% if entity.answers %}
     <a href="#" class="mr-3">answers({{ entity.answers }})</a>
   {% endif %}
@@ -34,5 +46,5 @@
       <span>,&nbsp;</span>
     {% endif %}
   {% endfor %}
-</div>
+  </div>
 {% endif %}

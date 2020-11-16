@@ -1,6 +1,7 @@
-import math
 from django.http import HttpRequest
 from django.shortcuts import render
+
+from app.models import paginate
 
 rightPanel = {
     'popularTags': [
@@ -24,21 +25,6 @@ rightPanel = {
 }
 
 
-def paginate(objectsList, request, perPage=10):
-    size = len(objectsList)
-    pages = math.ceil(size/perPage)
-
-    page = request.GET.get('page', '')
-
-    if page == '':
-        page = 1
-
-    page = int(page)
-
-    startIdx = (page - 1) * perPage
-    pageSlice = objectsList[startIdx:startIdx + perPage]
-
-    return page, pages, pageSlice
 
 
 def index(request):

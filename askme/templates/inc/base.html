@@ -84,7 +84,7 @@
               </div>
               <div class="row tag-text-box">
                 {% for tag in rightPanel.popularTags %}
-                  <span class="tag-text">{{ tag }}</span>
+                  <a class="tag-text" href="{% url 'tag' tag %}">{{ tag }}</a>
                 {% endfor %}
               </div>
               <div class="row members-title">

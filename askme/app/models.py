@@ -1,6 +1,8 @@
 import os
 import math
 
+from datetime import datetime
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -28,6 +30,22 @@ def paginate(objectsList, request, perPage=10):
     return page, pages, pageSlice
 
 
+def get_popular_tags():
+    tags = Tag.objects.annotate(tag_count=models.Count('text')).order_by('-tag_count').reverse()[:20]
+
+    tags_list = []
+    for tag in tags:
+        tags_list.append(tag.text)
+
+    return tags_list
+
+def get_best_members():
+    one_week_ago = datetime.today() - timedelta(days=7)
+    members = Question.objects.filter(date_gte=one_week_ago).order_by('rating').reverse()[:10].get()
+
+    return members
+
+
 # Create your models here.
 
 
@@ -49,44 +67,42 @@ class QuestionManager(models.Manager):
     def get_newest(self):
         questions = self.order_by('date')
 
-        tags_qset = []
-        for question_ in questions:
-            tag = Tag.objects.filter(question=question_)
-            tags_qset.append(tag.values('text'))
-
-        questions = questions.values()
-
-        for i in range(len(questions)):
-            questions[i]['tags'] = []
-            for tags in tags_qset[i]:
-                print(tags)
-                questions[i]['tags'].append(tags['text'])
-
         return questions
 
     def get_hottest(self):
-        return self.order_by(rating)
+        questions = self.order_by('rating').reverse()
 
-    def get_byid(self, id_):
-        return self.filter(self=id_)
+        return questions
 
     def get_bytag(self, tag_):
-        return self.filter(self=Tag.filter(Tag__text=tag_).only(question))
-    
+        questions = self.filter(tag__text=tag_)
+
+        return questions
+
     def get_tags(self):
-        return Tag.filter(Tag__id=self)
+        return self.get(tag).all()
+
+
+class Tag(models.Model):
+    text = models.CharField(max_length=60)
+
+    def __str__(self):
+        return str({'text': self.text})
 
 
 class Question(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=1024)
     text = models.TextField()
     answers = models.IntegerField(default=0)
     rating = models.IntegerField(default=0)
     avatar = models.FilePathField(path=images_path(), default = 'qimg.jpg')
     date = models.DateTimeField(auto_now_add=True)
+    tag = models.ManyToManyField(to=Tag)
 
     objects = QuestionManager()
     
+
     def __str__(self):
         return str({'title': self.title, 'text': self.text, 'answers': self.answers, 'rating': self.rating, 'avatar': self.avatar, 'date': self.date})
 
@@ -96,14 +112,6 @@ class Answer(models.Model):
     text = models.TextField()
     rating = models.IntegerField(default=0)
     correct = models.BooleanField(default=False)
-
-
-class Tag(models.Model):
-    question = models.ForeignKey('Question', on_delete=models.CASCADE)
-    text = models.CharField(max_length=60)
-
-    def __str__(self):
-        return str({'question id': self.question, 'text': self.text})
 
 
 class Profile(models.Model):

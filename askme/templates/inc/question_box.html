@@ -30,18 +30,18 @@
     {% endif %}
   </div>
 </div>
-{% if entity.answers != None or entity.tags %}
+{% if entity.answers != None or entity.tag.all %}
   <div class="container d-flex justify-content-end question-footer">
   {% if entity.answers != None %}
     <a href="{% url 'question' entity.id %}" class="mr-3">answers({{ entity.answers }})</a>
   {% endif %}
 
-  {% if entity.tags %}
+  {% if entity.tag.all %}
     <span class="mr-2">Tags: </span>
   {% endif %}
 
-  {% for tag in entity.tags %}
-    <a href="{% url 'tag' tag %}">{{ tag }}</a>
+  {% for tag in entity.tag.all %}
+    <a href="{% url 'tag' tag.text %}">{{ tag.text }}</a>
     {% if not forloop.last %}
       <span>,&nbsp;</span>
     {% endif %}

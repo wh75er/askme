@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="media-body">
-    {% if entity.answers %}
+    {% if entity.answers != None %}
     <h5><a href="{% url 'question' entity.id %}" class="mt-0 question-title">{{ entity.title }}</a></h5>
     {% else %}
     <h5>{{ entity.title }}</h5>
@@ -30,9 +30,9 @@
     {% endif %}
   </div>
 </div>
-{% if entity.answers or entity.tags %}
+{% if entity.answers != None or entity.tags %}
   <div class="container d-flex justify-content-end question-footer">
-  {% if entity.answers %}
+  {% if entity.answers != None %}
     <a href="{% url 'question' entity.id %}" class="mr-3">answers({{ entity.answers }})</a>
   {% endif %}
 

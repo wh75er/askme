@@ -1,7 +1,7 @@
 from django.http import HttpRequest
 from django.shortcuts import render
 
-from app.models import paginate
+from app.models import paginate, Question
 
 rightPanel = {
     'popularTags': [
@@ -28,17 +28,23 @@ rightPanel = {
 
 
 def index(request):
-    questions_ = []
-    for i in range(1, 30):
-        questions_.append({
-            'title': 'title ' + str(i),
-            'id': i,
-            'text': 'text' + str(i),
-            'rating': 2,
-            'answers': i,
-            'tags': ['simple', 'small'],
-        })
-    questions_[0]['rating'] = 200
+#    questions_ = []
+#    for i in range(1, 30):
+#        questions_.append({
+#            'title': 'title ' + str(i),
+#            'id': i,
+#            'text': 'text' + str(i),
+#            'rating': 2,
+#            'answers': i,
+#            'tags': ['simple', 'small'],
+#        })
+#    questions_[0]['rating'] = 200
+
+    questions_ = Question.objects.get_newest()
+#    for question in questions_:
+#        question['answers'] = None;
+
+    #print(questions_)
 
     page, pages, questions_ = paginate(questions_, request, 20)
 

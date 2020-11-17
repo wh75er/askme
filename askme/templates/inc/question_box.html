@@ -14,12 +14,16 @@
     </div>
   </div>
   <div class="media-body">
-    {% if entity.answers != None %}
+    {% if not single_page %}
     <h5><a href="{% url 'question' entity.id %}" class="mt-0 question-title">{{ entity.title }}</a></h5>
     {% else %}
     <h5>{{ entity.title }}</h5>
     {% endif %}
+    {% if not single_page %}
     <div class="question-text overflow-hidden">{{ entity.text }}</div>
+    {% else %}
+    <div class="question-text overflow-auto">{{ entity.text }}</div>
+    {% endif %}
     {% if not entity.title %}
       <div class="d-flex justify-content-start mt-4">
         <div class="form-group form-check">
@@ -32,7 +36,7 @@
 </div>
 {% if entity.answers != None or entity.tag.all %}
   <div class="container d-flex justify-content-end question-footer">
-  {% if entity.answers != None %}
+  {% if entity.answers != None and not single_page %}
     <a href="{% url 'question' entity.id %}" class="mr-3">answers({{ entity.answers }})</a>
   {% endif %}
 

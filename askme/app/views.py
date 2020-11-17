@@ -78,6 +78,7 @@ def question(request, id):
         'pages': pages,
         'entity': question_,
         'answers': answers_,
+        'single_page': True,
         'rightPanel': rightPanel,
     })
 

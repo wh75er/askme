@@ -31,7 +31,9 @@ def paginate(objectsList, request, perPage=10):
 
 
 def get_popular_tags():
-    tags = Tag.objects.annotate(tag_count=models.Count('text')).order_by('-tag_count').reverse()[:20]
+    tags = Tag.objects.annotate(tag_count=models.Count('text')) \
+        .order_by('-tag_count') \
+        .reverse()[:20]
 
     tags_list = []
     for tag in tags:
@@ -39,28 +41,47 @@ def get_popular_tags():
 
     return tags_list
 
+
 def get_best_members():
-    one_week_ago = datetime.today() - timedelta(days=7)
-    members = Question.objects.filter(date_gte=one_week_ago).order_by('rating').reverse()[:10].get()
+    one_week_ago = datetime.today() - datetime.timedelta(days=7)
+    questions = Question.objects.filter(date_gte=one_week_ago) \
+        .order_by('rating') \
+        .reverse()[:10]
+
+    members = []
+    for question in questions:
+        members.append(question.get(user__username))
 
     return members
 
 
 # Create your models here.
 
-
-class Rating(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-
 class QuestionRating(models.Model):
-    id = models.OneToOneField('Rating', on_delete=models.CASCADE, db_index=False, primary_key=True)
-    questionId = models.ForeignKey('Question', on_delete=models.CASCADE)
+    DISLIKE = 'DK'
+    LIKE = 'LK'
+    LIKE_TYPE_CHOICES = [
+                 (DISLIKE, 'DISLIKE'),
+                 (LIKE, 'LIKE')
+                ]
+    like_type = models.CharField(
+        max_length=2,
+        choices=LIKE_TYPE_CHOICES,
+        default=LIKE,
+    )
+    question = models.ForeignKey('Question',
+                                 null=True,
+                                 on_delete=models.CASCADE)
+    user = models.ForeignKey(User,
+                             on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ['question', 'user']
 
 
 class AnswerRating(models.Model):
-    id = models.OneToOneField(Rating, on_delete=models.CASCADE, db_index=False, primary_key=True)
-    answerId = models.ForeignKey('Answer', on_delete=models.CASCADE)
+    user = models.ForeignKey(User,
+                             on_delete=models.CASCADE)
 
 
 class QuestionManager(models.Manager):
@@ -96,15 +117,19 @@ class Question(models.Model):
     text = models.TextField()
     answers = models.IntegerField(default=0)
     rating = models.IntegerField(default=0)
-    avatar = models.FilePathField(path=images_path(), default = 'qimg.jpg')
+    avatar = models.FilePathField(path=images_path(), default='qimg.jpg')
     date = models.DateTimeField(auto_now_add=True)
     tag = models.ManyToManyField(to=Tag)
 
     objects = QuestionManager()
-    
 
     def __str__(self):
-        return str({'title': self.title, 'text': self.text, 'answers': self.answers, 'rating': self.rating, 'avatar': self.avatar, 'date': self.date})
+        return str({'title': self.title,
+                    'text': self.text,
+                    'answers': self.answers,
+                    'rating': self.rating,
+                    'avatar': self.avatar,
+                    'date': self.date})
 
 
 class Answer(models.Model):
@@ -116,5 +141,4 @@ class Answer(models.Model):
 
 class Profile(models.Model):
     id = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    avatar = models.FilePathField(path=images_path(), default = 'qimg.jpg')
-    
+    avatar = models.FilePathField(path=images_path(), default='qimg.jpg')

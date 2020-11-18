@@ -80,8 +80,25 @@ class QuestionRating(models.Model):
 
 
 class AnswerRating(models.Model):
+    DISLIKE = 'DK'
+    LIKE = 'LK'
+    LIKE_TYPE_CHOICES = [
+                 (DISLIKE, 'DISLIKE'),
+                 (LIKE, 'LIKE')
+                ]
+    like_type = models.CharField(
+        max_length=2,
+        choices=LIKE_TYPE_CHOICES,
+        default=LIKE,
+    )
+    answer = models.ForeignKey('Answer',
+                               null=True,
+                               on_delete=models.CASCADE)
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ['question', 'user']
 
 
 class QuestionManager(models.Manager):

@@ -98,7 +98,7 @@ class AnswerRating(models.Model):
                              on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = ['question', 'user']
+        unique_together = ['answer', 'user']
 
 
 class QuestionManager(models.Manager):
